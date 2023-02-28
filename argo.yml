@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: jenkins-argo
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: guestbook
+    server: "https://kubernetes.default.svc"
+  project: default
+  source: 
+    path: argo.yml #specific folder of yamls in git
+    repoURL: https://github.com/sahar449/gitOps-demo.git
+    targetRevision: master # branch in git
+    directory:
+      recurse: true
+  syncPolicy:
+    automated: {} #automate sync(without using gui)
+    syncOptions:
+      - CreateNamespace=true
