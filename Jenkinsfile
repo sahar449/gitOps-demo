@@ -14,13 +14,7 @@ pipeline{
         //         }
         //     }
         // }
-        // stage('Git clone'){
-        //     steps{
-        //         git credentialsId: 'github_pat',
-        //         url: 'git@github.com:sahar449/gitOps-demo.git',
-        //         branch: 'master'
-        //     }
-        // }
+        
         stage('stop all the containers'){
             steps{
                 script{
@@ -71,8 +65,9 @@ pipeline{
                     git config --global user.email "saharr449@gmail.com"
                     git add deployment.yml
                     git commit -m 'update deployment' """
-                    withCredentials([usernameColonPassword(credentialsId: 'github_login', variable: 'github_login')]) {
-                        sh "git push http://sahar449:${github_login}@github.com/sahar449/gitOps-demo.git main"
+                    withCredentials([gitUsernamePassword(credentialsId: 'github_pat', gitToolName: 'Default')]) {
+                            sh "git push git@github.com:sahar449/gitOps-demo.git"
+                        }
                     }
                 }
             }
