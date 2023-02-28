@@ -60,14 +60,12 @@ pipeline{
         stage('push the update to github'){
             steps{
                 script{
-                    sh """
-                    git config --global user.name "sahar449"
-                    git config --global user.email "saharr449@gmail.com"
-                    git checkout -b master
-                    git add deployment.yml
-                    git commit -m 'update deployment' """
                     withCredentials([gitUsernamePassword(credentialsId: 'github_pat', gitToolName: 'Default')]) {
-                            sh "git push git@github.com:sahar449/gitOps-demo.git main"
+                            sh """
+                                git add .
+                                git commit -m "update deployment"
+                                git push 
+                                """
                         }
                     }
                 }
