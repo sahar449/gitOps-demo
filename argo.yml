@@ -9,7 +9,7 @@ spec:
     server: "https://kubernetes.default.svc"
   project: default
   source: 
-    path: guestbook
+    path: .
     repoURL: https://github.com/sahar449/gitOps-demo.git
     targetRevision: main
   syncPolicy:
