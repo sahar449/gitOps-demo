@@ -64,7 +64,7 @@ pipeline{
                             sh """
                                 git add .
                                 git commit -m "update deployment"
-                                git push 
+                                 git push origin HEAD:main
                                 """
                         }
                     }
