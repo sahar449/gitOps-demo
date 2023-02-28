@@ -72,7 +72,7 @@ pipeline{
                     git add deployment.yml
                     git commit -m 'update deployment' """
                     withCredentials([usernameColonPassword(credentialsId: 'github_login', variable: 'github_login')]) {
-                        sh "git push http://sahar449:$github_login@github.com/sahar449/gitOps-demo.git main"
+                        sh "git push http://sahar449:${github_login}@github.com/sahar449/gitOps-demo.git main"
                     }
                 }
             }
