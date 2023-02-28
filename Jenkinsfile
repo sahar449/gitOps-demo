@@ -7,13 +7,13 @@ pipeline{
         IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
     }
     stages{
-        stage('Clean workspace'){
-            steps{
-                script{
-                    cleanWs()
-                }
-            }
-        }
+        // stage('Clean workspace'){
+        //     steps{
+        //         script{
+        //             cleanWs()
+        //         }
+        //     }
+        // }
         // stage('Git clone'){
         //     steps{
         //         git credentialsId: 'github_pat',
