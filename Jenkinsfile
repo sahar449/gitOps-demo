@@ -7,14 +7,6 @@ pipeline{
         IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
     }
     stages{
-        // stage('Clean workspace'){
-        //     steps{
-        //         script{
-        //             cleanWs()
-        //         }
-        //     }
-        // }
-        
         stage('stop all the containers'){
             steps{
                 script{
