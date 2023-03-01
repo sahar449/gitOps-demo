@@ -13,5 +13,6 @@ spec:
     repoURL: https://github.com/sahar449/gitOps-demo.git
     targetRevision: main
   syncPolicy:
+    automated: {} 
     syncOptions:
       - CreateNamespace=true
