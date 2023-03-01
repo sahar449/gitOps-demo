@@ -11,9 +11,9 @@ pipeline{
             steps{
                 script{
                     sh """
-                        docker build -t ${APP_NAME}:v1.$BUILD_ID .
-                        docker image tag ${APP_NAME}:v1.$BUILD_ID ${IMAGE_NAME}:v1.$BUILD_ID
-                        docker image tag ${APP_NAME}:v1.$BUILD_ID ${IMAGE_NAME}:latest
+                        docker build -t ${APP_NAME}:$BUILD_ID .
+                        docker image tag ${APP_NAME}:$BUILD_ID ${IMAGE_NAME}:$BUILD_ID
+                        docker image tag ${APP_NAME}:$BUILD_ID ${IMAGE_NAME}:latest
                         """
                 }
             }
@@ -24,7 +24,7 @@ pipeline{
                     withCredentials([string(credentialsId: 'docker_hub_login', variable: 'docker_hub')]) {
                         sh """
                                 docker login -u sahar449 -p ${docker_hub}
-                                docker push ${IMAGE_NAME}:v1.$BUILD_ID
+                                docker push ${IMAGE_NAME}:$BUILD_ID
                                 docker push ${IMAGE_NAME}:latest
                             """
                     }
