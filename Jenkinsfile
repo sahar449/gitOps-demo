@@ -7,13 +7,6 @@ pipeline{
         IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
     }
     stages{
-        stage('stop all the containers'){
-            steps{
-                script{
-                    sh "docker container prune --force"
-                }
-            }
-        }
         stage('Build docker and tag'){
             steps{
                 script{
