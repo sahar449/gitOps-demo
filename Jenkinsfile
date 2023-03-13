@@ -55,12 +55,5 @@ pipeline{
                     }
                 }
             }
-        // stage('Run the app using argocd'){
-        //     steps{
-        //         script{
-        //                 sh 'kubectl apply -f argo.yml'
-        //             }
-        //         }
-        //     }
         }    
     }
