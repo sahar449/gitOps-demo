@@ -35,9 +35,8 @@ pipeline{
             steps{
                 script{
                     sh """
-                        mkdir ci && cd ci
-                        helm create ci && helm install ci .
-                        curl minikube.com:30011/health
+                        helm create ci && cd ci && helm install ci .
+                        echo $(curl minikube.com:30011/health)
                         """
                 }
             }
