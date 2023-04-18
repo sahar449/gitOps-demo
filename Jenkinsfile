@@ -31,7 +31,7 @@ pipeline{
                 }
             }
         }
-        stgae('Installtion by helm'){
+        stage('Installtion by helm'){
             steps{
                 script{
                     sh """
