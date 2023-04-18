@@ -36,9 +36,9 @@ pipeline{
                 script{
                     withKubeConfig([credentialsId: 'kubeconfig']){
                     sh '''
-                        helm create ci 
-                        cd ci
-                        helm install ci .
+                        helm create ${APP_NAME}:$BUILD_ID 
+                        cd ${APP_NAME}:$BUILD_ID
+                        helm install ${APP_NAME}:$BUILD_ID .
                         echo $(curl minikube.com:30011/health)
                         '''
                     }
