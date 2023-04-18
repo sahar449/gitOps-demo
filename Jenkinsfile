@@ -64,9 +64,9 @@ pipeline{
             steps{
                 script{
                     withKubeConfig([credentialsId: 'kubeconfig']){
-                        sh """  kubectl apply -f argocd.yml
+                        sh '''  kubectl apply -f argocd.yml
                                 echo $(curl http://minikube.com:32000/health)
-                            """
+                            '''
 
                     }
                 }
