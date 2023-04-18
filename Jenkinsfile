@@ -10,11 +10,16 @@ pipeline{
         stage('Build docker and tag'){
             steps{
                 script{
+                    withCredentials([string(credentialsId: 'docker_hub_login', variable: 'docker_hub')]) {
                     sh """
                         docker build -t ${APP_NAME}:$BUILD_ID .
                         docker image tag ${APP_NAME}:$BUILD_ID ${IMAGE_NAME}:$BUILD_ID
                         docker image tag ${APP_NAME}:$BUILD_ID ${IMAGE_NAME}:latest
+                        docker login -u sahar449 -p ${docker_hub}
+                        docker push ${IMAGE_NAME}:$BUILD_ID
+                        docker push ${IMAGE_NAME}:latest
                         """
+                    }
                 }
             }
         }
@@ -55,14 +60,17 @@ pipeline{
                     }
                 }
             }
-        stage('Deploy to argocd'){
+        stage('Deploy to argocd and check helathly'){
             steps{
                 script{
                     withKubeConfig([credentialsId: 'kubeconfig']){
-                        sh "kubectl apply -f argocd.yml"
+                        sh """  kubectl apply -f argocd.yml
+                                echo $(curl http://minikube.com:32000/health)
+                            """
+
                     }
                 }
             }
         }
-        }    
-    }
+    }    
+}
