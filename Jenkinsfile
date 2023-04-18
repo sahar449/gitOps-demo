@@ -34,12 +34,14 @@ pipeline{
         stage('Installtion by helm'){
             steps{
                 script{
+                    withKubeConfig([credentialsId: 'kubeconfig']){
                     sh '''
                         helm create ci 
                         cd ci
                         helm install ci .
                         echo $(curl minikube.com:30011/health)
                         '''
+                    }
                 }
             }
         }
@@ -51,6 +53,7 @@ pipeline{
                         sed -i 's/${APP_NAME}.*/${APP_NAME}:${BUILD_ID}/g' deployment.yml
                         cat deployment.yml
                      """
+                    }
                 }
             }
         }
