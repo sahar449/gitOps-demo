@@ -34,12 +34,12 @@ pipeline{
         stage('Installtion by helm'){
             steps{
                 script{
-                    sh """
+                    sh '''
                         helm create ci 
                         cd ci
                         helm install ci .
                         echo $(curl minikube.com:30011/health)
-                        """
+                        '''
                 }
             }
         }
