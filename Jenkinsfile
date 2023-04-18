@@ -55,5 +55,14 @@ pipeline{
                     }
                 }
             }
+        stage('Deploy to argocd'){
+            steps{
+                script{
+                    withKubeConfig([credentialsId: 'kubeconfig']){
+                        sh "kubectl -f argocd.yml"
+                    }
+                }
+            }
+        }
         }    
     }
