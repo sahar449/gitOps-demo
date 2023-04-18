@@ -56,7 +56,6 @@ pipeline{
                     }
                 }
             }
-        }
         stage('push the update to github'){
             steps{
                 script{
@@ -70,4 +69,5 @@ pipeline{
                     }
                 }
             }
-        }    
+        }
+    }    
