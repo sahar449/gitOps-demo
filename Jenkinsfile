@@ -59,7 +59,7 @@ pipeline{
             steps{
                 script{
                     withKubeConfig([credentialsId: 'kubeconfig']){
-                        sh "kubectl -f argocd.yml"
+                        sh "kubectl apply -f argocd.yml"
                     }
                 }
             }
