@@ -31,6 +31,17 @@ pipeline{
                 }
             }
         }
+        stgae('Installtion by helm'){
+            steps{
+                script{
+                    sh """
+                        mkdir ci && cd ci
+                        helm create ci && helm install ci .
+                        curl minikube.com:30011/health
+                        """
+                }
+            }
+        }
         stage('update k8s deployment'){
             steps{
                 script{
