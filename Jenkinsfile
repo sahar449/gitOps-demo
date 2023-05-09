@@ -7,7 +7,7 @@ pipeline{
         IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
     }
     stages{
-        stage('Build docker and tag'){
+        stage('Docker login, build, tag and push'){
             steps{
                 script{
                     withCredentials([string(credentialsId: 'docker_hub_login', variable: 'docker_hub')]) {
@@ -19,19 +19,6 @@ pipeline{
                         docker push ${IMAGE_NAME}:$BUILD_ID
                         docker push ${IMAGE_NAME}:latest
                         """
-                    }
-                }
-            }
-        }
-        stage('docker login and push'){
-            steps{
-                script{
-                    withCredentials([string(credentialsId: 'docker_hub_login', variable: 'docker_hub')]) {
-                        sh """
-                                docker login -u sahar449 -p ${docker_hub}
-                                docker push ${IMAGE_NAME}:$BUILD_ID
-                                docker push ${IMAGE_NAME}:latest
-                            """
                     }
                 }
             }
