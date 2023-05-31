@@ -42,7 +42,6 @@ pipeline{
                                 git add .
                                 git commit -m "update deployment"
                                 git push origin HEAD:main
-                                git rebase
                                 """
                         }
                     }
